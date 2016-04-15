@@ -39,6 +39,20 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
           </ul>
+          {% if request.user.is_authenticated %}
+          <ul class="nav navbar-nav pull-right">
+            <li role="presentation" class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                {{ request.user }} <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                  <li class="active"><a href="{% url 'logout' %}">Logout</a></li>
+              </ul>
+            </li>
+
+          </ul>
+          {% endif %}
+
         </div><!--/.nav-collapse -->
       </div>
     </nav>

@@ -17,15 +17,19 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth.decorators import login_required
 
 from account.views import HomeView, AccountRangeList
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login', name='login'),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout'),
 
-    url(r'^api/v1/account/range/$', AccountRangeList.as_view(), name='account_range_api'),
+    url(r'^$', login_required(HomeView.as_view()), name='home'),
+
+    url(r'^api/v1/account/range/$', login_required(AccountRangeList.as_view()), name='account_range_api'),
 ]
 
 if settings.DEBUG:
