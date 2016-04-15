@@ -3,7 +3,14 @@ PJ job
 
 PJ job
 
+**Test site url:** http://127.0.0.1:8895/
 
+**Test admin panel:** http://127.0.0.1:8895/admin/
+
+- Login: `admin`
+- Password: `adminadmin`
+
+-------
 Agreement
 =========
 
