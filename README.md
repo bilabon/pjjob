@@ -46,6 +46,13 @@ Install packages
     (.env)$ pip install -r requirements.txt
 
 
+Run the project's tests
+----------------
+
+
+    (.env)$ make test
+
+
 Run the project
 ----------------
 
