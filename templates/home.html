@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Home | {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="rpw">
+    <h2>On protected part of site, allow user to perform actions:</h2>
+    <ul>
+        <li class="custom-lead">select data for certain period of time;</li>
+        <li class="custom-lead">create a chart showing bank account activity for current month;</li>
+        <li class="custom-lead">allow user to download all of his data in xls or csv format;</li>
+    </ul>
+</div>
+
+<div class="row margin-bottom">
+        <div class="col-md-4">
+            <div class="input-group">
+            <span class="input-group-addon"><span class=" glyphicon glyphicon-calendar"></span></span>
+            <input type="text" class="form-control" id="reportrange">
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+        <a class="btn btn-info pull-right" id="btn-get-csv" type="button" href="{% url 'account_range_api' %}?format=csv">Get csv</a>
+            <!-- <a id="get-csv" type="button" href=class="btn btn-info pull-right">Get csv</a> -->
+        </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table data-toggle="table" id="main-table">
+            <thead>
+                <tr>
+                    <th data-field="timestamp">Timestamp</th>
+                    <th data-field="value">Value</th>
+                    <th data-field="transaction">Transaction</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block down_js %}
+<script type="text/javascript">
+    $('#main-table').bootstrapTable({
+        url: "{% url 'account_range_api' %}"
+    });
+
+    $('#reportrange').daterangepicker({
+        'dateLimit': {'days': 30},
+        'startDate': moment().subtract(30, 'days'),
+        'endDate': moment(),
+
+        ranges: {
+           'Today': [moment(), moment()],
+           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+           'Last 30 Days': [moment().subtract(30, 'days'), moment()],
+           'This Month': [moment().startOf('month'), moment().endOf('month')],
+           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+
+    }, function(start, end, label) {
+      console.log("New date range selected: " + start.format('YYYY-MM-DD') + " to " + end.format('YYYY-MM-DD') + " (predefined range: " + label + ")");
+
+        var url = "{% url 'account_range_api' %}?start=" + start.format('YYYY-MM-DD') + "&end=" + end.format('YYYY-MM-DD');
+        console.log(url);
+
+        $('#btn-get-csv').attr("href", url + "&format=csv")
+
+        $.getJSON(url, function(data) {
+            $('#main-table').bootstrapTable("load", data);
+        });
+
+    });
+</script>
+{% endblock %}
