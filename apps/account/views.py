@@ -10,10 +10,14 @@ from account.serializers import AccountSerializer
 
 
 class HomeView(TemplateView):
+    '''Home page view'''
     template_name = 'home.html'
 
 
 class AccountRangeList(ListAPIView):
+    '''API: Filtering Account data for specified dates range
+    and saving filtered data to csv if use ?format=csv.
+    '''
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
 

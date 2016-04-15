@@ -3,6 +3,8 @@ from django.conf import settings
 
 
 class Account(models.Model):
+    '''Account model'''
+
     TRANSACTION_CHOICES = (
         ('I', 'Income'),
         ('E', 'Expense'),
@@ -12,7 +14,7 @@ class Account(models.Model):
     value = models.DecimalField(max_digits=13, decimal_places=4)
 
     timestamp = models.DateTimeField(auto_now_add=True)
-    timestamp.editable = True
+    # timestamp.editable = True
 
     def __str__(self):
         return '({}) {}: {}, {}'.format(

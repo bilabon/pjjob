@@ -46,6 +46,25 @@ Install packages
     (.env)$ pip install -r requirements.txt
 
 
+Run the project
+----------------
+
+
+    (.env)$ make migrate
+    (.env)$ make createsuperuser
+    (.env)$ make collectstatic
+    (.env)$ make run
+
+
+BOWER USAGE
+----------------
+
+
+    (.env)$ npm install -g bower
+    (.env)$ ./manage.py bower install
+    (.env)$ make collectstatic
+
+
 Create MySQL database
 -----
 
@@ -58,7 +77,7 @@ Create MySQL database
     FLUSH PRIVILEGES;
 
 
-if you want to use MySQL database, just create file: `mkdir basic/local_settings.py` with content:
+if you want to use MySQL database, just create file: `touch basic/local_settings.py` with content:
 
 
     DATABASES = {

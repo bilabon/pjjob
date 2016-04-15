@@ -3,6 +3,7 @@ from rest_framework import serializers
 
 
 class AccountSerializer(serializers.ModelSerializer):
+    '''Account model serializer'''
     transaction = serializers.SerializerMethodField()
     timestamp = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
 
