@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'djangobower',
     'debug_toolbar',
     'rest_framework',
+    'widget_tweaks',
 
     'account',
 ]
