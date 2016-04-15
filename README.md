@@ -58,7 +58,7 @@ Run the project
 
 
     (.env)$ make migrate
-    (.env)$ make createsuperuser
+    (.env)$ make fixtures
     (.env)$ make collectstatic
     (.env)$ make run
 

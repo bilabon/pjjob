@@ -35,6 +35,12 @@ migrate:
 	$(MANAGE) migrate
 	@echo Done
 
+fixtures:
+	$(MAKE) clean
+	$(MANAGE) loaddata $(CURRPATH)/basic/fixtures/_initial_user.json
+	$(MANAGE) loaddata $(CURRPATH)/basic/fixtures/_initial_account.json
+	@echo Done
+
 createsuperuser:
 	$(MAKE) clean
 	$(MANAGE) createsuperuser
