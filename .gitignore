@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+*.DS_Store
+/.bash_history
+/.bashrc
+/.env
+*.sqlite3
+*.db
+web/*
+logs/*.log
+logs/email/*
+.idea/
+basic/local_settings.py
