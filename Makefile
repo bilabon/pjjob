@@ -13,6 +13,12 @@ PYTHONPATH=.:..
 
 MANAGE=cd $(PROJECT) && PYTHONPATH=$(PYTHONPATH) DJANGO_SETTINGS_MODULE=$(PROJECT).settings django-admin.py
 
+help:
+	@echo '    run ..................... run the project'
+	@echo '    shell ............................. shell'
+	@echo '    test ............................... test'
+	@echo '    clean ............................. clean'
+
 manage:
 ifndef CMD
 	@echo Please, specify CMD argument to execute Django management command
